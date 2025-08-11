@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { cn } from "@/utils/cn";
 
 const Input = React.forwardRef(({ className, type = "text", ...props }, ref) => {
@@ -15,6 +15,8 @@ const Input = React.forwardRef(({ className, type = "text", ...props }, ref) => 
   );
 });
 
-Input.displayName = "Input";
+Input.displayName = 'Input';
 
 export default Input;
+
+Input.displayName = "Input";
