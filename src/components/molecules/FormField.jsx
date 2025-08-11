@@ -12,8 +12,9 @@ const FormField = ({
   required = false,
   ...props 
 }) => {
-  const isSelect = type === "select";
+const isSelect = type === "select";
   const Component = isSelect ? Select : Input;
+  const safeOptions = options || [];
 
   return (
     <div className={cn("space-y-2", className)}>
@@ -30,10 +31,10 @@ const FormField = ({
       >
         {isSelect && (
           <>
-            <option value="">Select {label.toLowerCase()}</option>
-            {options.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
+            <option value="">Select {label ? label.toLowerCase() : 'option'}</option>
+            {safeOptions.map((option) => (
+              <option key={option?.value || Math.random()} value={option?.value || ""}>
+                {option?.label || option?.value || 'Unknown option'}
               </option>
             ))}
           </>
