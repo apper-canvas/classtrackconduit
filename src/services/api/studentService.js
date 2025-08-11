@@ -222,4 +222,6 @@ class StudentService {
   }
 }
 
-export default new StudentService();
+const studentService = new StudentService();
+export { studentService };
+export default studentService;
