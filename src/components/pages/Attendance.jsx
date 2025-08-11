@@ -8,7 +8,7 @@ import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
 import Button from "@/components/atoms/Button";
-import { studentService } from "@/services/studentService";
+import { studentService } from "@/services/api/studentService.js";
 import { attendanceService } from "@/services/attendanceService";
 const Attendance = () => {
   const [students, setStudents] = useState([]);
