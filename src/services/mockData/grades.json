@@ -1,0 +1,102 @@
+[
+  {
+    "Id": 1,
+    "studentId": "1",
+    "classId": "1",
+    "assignmentName": "Quadratic Equations Quiz",
+    "score": 95,
+    "totalPoints": 100,
+    "date": "2024-12-18",
+    "type": "Quiz"
+  },
+  {
+    "Id": 2,
+    "studentId": "2",
+    "classId": "1",
+    "assignmentName": "Quadratic Equations Quiz",
+    "score": 87,
+    "totalPoints": 100,
+    "date": "2024-12-18",
+    "type": "Quiz"
+  },
+  {
+    "Id": 3,
+    "studentId": "4",
+    "classId": "1",
+    "assignmentName": "Quadratic Equations Quiz",
+    "score": 92,
+    "totalPoints": 100,
+    "date": "2024-12-18",
+    "type": "Quiz"
+  },
+  {
+    "Id": 4,
+    "studentId": "1",
+    "classId": "2",
+    "assignmentName": "Cell Structure Test",
+    "score": 88,
+    "totalPoints": 100,
+    "date": "2024-12-17",
+    "type": "Test"
+  },
+  {
+    "Id": 5,
+    "studentId": "3",
+    "classId": "2",
+    "assignmentName": "Cell Structure Test",
+    "score": 94,
+    "totalPoints": 100,
+    "date": "2024-12-17",
+    "type": "Test"
+  },
+  {
+    "Id": 6,
+    "studentId": "7",
+    "classId": "1",
+    "assignmentName": "Homework Set 5",
+    "score": 85,
+    "totalPoints": 100,
+    "date": "2024-12-16",
+    "type": "Homework"
+  },
+  {
+    "Id": 7,
+    "studentId": "2",
+    "classId": "3",
+    "assignmentName": "Essay: American Dream",
+    "score": 91,
+    "totalPoints": 100,
+    "date": "2024-12-15",
+    "type": "Assignment"
+  },
+  {
+    "Id": 8,
+    "studentId": "5",
+    "classId": "3",
+    "assignmentName": "Essay: American Dream",
+    "score": 89,
+    "totalPoints": 100,
+    "date": "2024-12-15",
+    "type": "Assignment"
+  },
+  {
+    "Id": 9,
+    "studentId": "3",
+    "classId": "4",
+    "assignmentName": "WWI Timeline Project",
+    "score": 96,
+    "totalPoints": 100,
+    "date": "2024-12-14",
+    "type": "Project"
+  },
+  {
+    "Id": 10,
+    "studentId": "6",
+    "classId": "4",
+    "assignmentName": "WWI Timeline Project",
+    "score": 93,
+    "totalPoints": 100,
+    "date": "2024-12-14",
+    "type": "Project"
+  }
+]

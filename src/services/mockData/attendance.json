@@ -1,0 +1,98 @@
+[
+  {
+    "Id": 1,
+    "studentId": "1",
+    "classId": "1",
+    "date": "2024-12-20",
+    "status": "Present",
+    "notes": ""
+  },
+  {
+    "Id": 2,
+    "studentId": "2",
+    "classId": "1",
+    "date": "2024-12-20",
+    "status": "Present",
+    "notes": ""
+  },
+  {
+    "Id": 3,
+    "studentId": "4",
+    "classId": "1",
+    "date": "2024-12-20",
+    "status": "Absent",
+    "notes": "Sick"
+  },
+  {
+    "Id": 4,
+    "studentId": "7",
+    "classId": "1",
+    "date": "2024-12-20",
+    "status": "Late",
+    "notes": "Traffic delay"
+  },
+  {
+    "Id": 5,
+    "studentId": "8",
+    "classId": "1",
+    "date": "2024-12-20",
+    "status": "Present",
+    "notes": ""
+  },
+  {
+    "Id": 6,
+    "studentId": "1",
+    "classId": "2",
+    "date": "2024-12-20",
+    "status": "Present",
+    "notes": ""
+  },
+  {
+    "Id": 7,
+    "studentId": "3",
+    "classId": "2",
+    "date": "2024-12-20",
+    "status": "Present",
+    "notes": ""
+  },
+  {
+    "Id": 8,
+    "studentId": "4",
+    "classId": "2",
+    "date": "2024-12-20",
+    "status": "Excused",
+    "notes": "Medical appointment"
+  },
+  {
+    "Id": 9,
+    "studentId": "1",
+    "classId": "1",
+    "date": "2024-12-19",
+    "status": "Present",
+    "notes": ""
+  },
+  {
+    "Id": 10,
+    "studentId": "2",
+    "classId": "1",
+    "date": "2024-12-19",
+    "status": "Present",
+    "notes": ""
+  },
+  {
+    "Id": 11,
+    "studentId": "4",
+    "classId": "1",
+    "date": "2024-12-19",
+    "status": "Present",
+    "notes": ""
+  },
+  {
+    "Id": 12,
+    "studentId": "7",
+    "classId": "1",
+    "date": "2024-12-19",
+    "status": "Present",
+    "notes": ""
+  }
+]
