@@ -9,7 +9,7 @@ import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
 import Button from "@/components/atoms/Button";
 import { studentService } from "@/services/api/studentService.js";
-import { attendanceService } from "@/services/api/attendanceService.js";
+import attendanceService from "@/services/api/attendanceService.js";
 const Attendance = () => {
   const [students, setStudents] = useState([]);
   const [attendance, setAttendance] = useState([]);
