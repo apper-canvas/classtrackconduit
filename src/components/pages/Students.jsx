@@ -19,12 +19,12 @@ const Students = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingStudent, setEditingStudent] = useState(null);
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    gradeLevel: "",
-    email: "",
-    phone: "",
+const [formData, setFormData] = useState({
+    first_name_c: "",
+    last_name_c: "",
+    grade_level_c: "",
+    email_c: "",
+    phone_c: "",
     classIds: []
   });
 
@@ -51,23 +51,23 @@ const Students = () => {
     if (!searchQuery) {
       setFilteredStudents(students);
     } else {
-      const filtered = students.filter(student =>
-        student.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        student.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        student.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+const filtered = students.filter(student =>
+        student.first_name_c?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        student.last_name_c?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        student.email_c?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         student.Id.toString().includes(searchQuery)
       );
       setFilteredStudents(filtered);
     }
   }, [searchQuery, students]);
 
-  const resetForm = () => {
+const resetForm = () => {
     setFormData({
-      firstName: "",
-      lastName: "",
-      gradeLevel: "",
-      email: "",
-      phone: "",
+      first_name_c: "",
+      last_name_c: "",
+      grade_level_c: "",
+      email_c: "",
+      phone_c: "",
       classIds: []
     });
     setEditingStudent(null);
@@ -77,15 +77,20 @@ const Students = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!formData.firstName || !formData.lastName || !formData.gradeLevel || !formData.email) {
+if (!formData.first_name_c || !formData.last_name_c || !formData.grade_level_c || !formData.email_c) {
       toast.error("Please fill in all required fields");
       return;
     }
 
-    try {
+try {
       const studentData = {
-        ...formData,
-        gradeLevel: parseInt(formData.gradeLevel)
+        first_name_c: formData.first_name_c,
+        last_name_c: formData.last_name_c,
+        grade_level_c: formData.grade_level_c,
+        email_c: formData.email_c,
+        phone_c: formData.phone_c,
+        status_c: "Active",
+        enrollment_date_c: new Date().toISOString().split("T")[0]
       };
 
       if (editingStudent) {
@@ -104,13 +109,13 @@ const Students = () => {
     }
   };
 
-  const handleEdit = (student) => {
+const handleEdit = (student) => {
     setFormData({
-      firstName: student.firstName,
-      lastName: student.lastName,
-      gradeLevel: student.gradeLevel.toString(),
-      email: student.email,
-      phone: student.phone,
+      first_name_c: student.first_name_c,
+      last_name_c: student.last_name_c,
+      grade_level_c: student.grade_level_c?.toString(),
+      email_c: student.email_c,
+      phone_c: student.phone_c,
       classIds: student.classIds || []
     });
     setEditingStudent(student);
@@ -197,42 +202,42 @@ const Students = () => {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
+<FormField
                 label="First Name"
-                value={formData.firstName}
-                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                value={formData.first_name_c}
+                onChange={(e) => setFormData({ ...formData, first_name_c: e.target.value })}
                 required
               />
               
-              <FormField
+<FormField
                 label="Last Name"
-                value={formData.lastName}
-                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                value={formData.last_name_c}
+                onChange={(e) => setFormData({ ...formData, last_name_c: e.target.value })}
                 required
               />
               
-              <FormField
+<FormField
                 label="Grade Level"
                 type="select"
-                value={formData.gradeLevel}
-                onChange={(e) => setFormData({ ...formData, gradeLevel: e.target.value })}
+                value={formData.grade_level_c}
+                onChange={(e) => setFormData({ ...formData, grade_level_c: e.target.value })}
                 options={gradeOptions}
                 required
               />
               
-              <FormField
+<FormField
                 label="Email Address"
                 type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                value={formData.email_c}
+                onChange={(e) => setFormData({ ...formData, email_c: e.target.value })}
                 required
               />
               
-              <FormField
+<FormField
                 label="Phone Number"
                 type="tel"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                value={formData.phone_c}
+                onChange={(e) => setFormData({ ...formData, phone_c: e.target.value })}
                 className="md:col-span-2"
               />
               

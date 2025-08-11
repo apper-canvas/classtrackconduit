@@ -1,24 +1,29 @@
-import React, { useState, useEffect } from "react";
-import Button from "@/components/atoms/Button";
+import React, { useEffect, useState } from "react";
+import { format, addDays, subDays } from "date-fns";
+import { toast } from "react-hot-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/atoms/Card";
+import ApperIcon from "@/components/ApperIcon";
 import AttendanceGrid from "@/components/organisms/AttendanceGrid";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
-import ApperIcon from "@/components/ApperIcon";
-import studentService from "@/services/api/studentService";
-import attendanceService from "@/services/api/attendanceService";
-import { format, subDays, addDays } from "date-fns";
-import { toast } from "react-toastify";
-
+import Button from "@/components/atoms/Button";
+import { studentService } from "@/services/studentService";
+import { attendanceService } from "@/services/attendanceService";
 const Attendance = () => {
   const [students, setStudents] = useState([]);
   const [attendance, setAttendance] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [attendanceStats, setAttendanceStats] = useState({});
+const [attendanceStats, setAttendanceStats] = useState({});
 
+  const getAttendanceStatus = (studentId) => {
+    const record = attendance.find(
+      (att) => (att.student_id_c?.Id || att.student_id_c) === studentId && att.date_c === format(selectedDate, "yyyy-MM-dd")
+    );
+    return record?.status_c || "unmarked";
+  };
   const loadData = async (date = selectedDate) => {
     try {
       setError("");
@@ -31,8 +36,8 @@ const Attendance = () => {
         attendanceService.getAttendanceStats({ start: dateStr, end: dateStr })
       ]);
       
-      // Filter active students only
-      const activeStudents = studentsData.filter(student => student.status === "Active");
+// Filter active students only
+      const activeStudents = studentsData.filter(student => student.status_c === "Active");
       
       setStudents(activeStudents);
       setAttendance(attendanceData);
@@ -75,8 +80,8 @@ const Attendance = () => {
     setSelectedDate(new Date());
   };
 
-  const getAttendanceCount = (status) => {
-    return attendance.filter(att => att.status === status).length;
+const getAttendanceCount = (status) => {
+    return attendance.filter(att => att.status_c === status).length;
   };
 
   const isToday = format(selectedDate, "yyyy-MM-dd") === format(new Date(), "yyyy-MM-dd");

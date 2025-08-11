@@ -23,14 +23,14 @@ const Grades = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingGrade, setEditingGrade] = useState(null);
-  const [formData, setFormData] = useState({
-    studentId: "",
-    classId: "",
-    assignmentName: "",
-    score: "",
-    totalPoints: "",
-    type: "",
-    date: ""
+const [formData, setFormData] = useState({
+    student_id_c: "",
+    class_id_c: "",
+    assignment_name_c: "",
+    score_c: "",
+    total_points_c: "",
+    type_c: "",
+    date_c: ""
   });
 
   const loadData = async () => {
@@ -63,14 +63,14 @@ const Grades = () => {
     if (!searchQuery) {
       setFilteredGrades(grades);
     } else {
-      const filtered = grades.filter(grade => {
-        const student = students.find(s => s.Id === grade.studentId);
-        const studentName = student ? `${student.firstName} ${student.lastName}` : "";
+const filtered = grades.filter(grade => {
+        const student = students.find(s => s.Id === grade.student_id_c?.Id || grade.student_id_c);
+        const studentName = student ? `${student.first_name_c} ${student.last_name_c}` : "";
         
-        return (
-          grade.assignmentName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+return (
+          grade.assignment_name_c?.toLowerCase().includes(searchQuery.toLowerCase()) ||
           studentName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          grade.type.toLowerCase().includes(searchQuery.toLowerCase())
+          grade.type_c?.toLowerCase().includes(searchQuery.toLowerCase())
         );
       });
       setFilteredGrades(filtered);
@@ -78,14 +78,14 @@ const Grades = () => {
   }, [searchQuery, grades, students]);
 
   const resetForm = () => {
-    setFormData({
-      studentId: "",
-      classId: "",
-      assignmentName: "",
-      score: "",
-      totalPoints: "",
-      type: "",
-      date: new Date().toISOString().split("T")[0]
+setFormData({
+      student_id_c: "",
+      class_id_c: "",
+      assignment_name_c: "",
+      score_c: "",
+      total_points_c: "",
+      type_c: "",
+      date_c: new Date().toISOString().split("T")[0]
     });
     setEditingGrade(null);
     setShowAddForm(false);
@@ -94,13 +94,13 @@ const Grades = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!formData.studentId || !formData.assignmentName || !formData.score || !formData.totalPoints) {
+if (!formData.student_id_c || !formData.assignment_name_c || !formData.score_c || !formData.total_points_c) {
       toast.error("Please fill in all required fields");
       return;
     }
 
-    const score = parseFloat(formData.score);
-    const totalPoints = parseFloat(formData.totalPoints);
+const score = parseFloat(formData.score_c);
+    const totalPoints = parseFloat(formData.total_points_c);
     
     if (isNaN(score) || isNaN(totalPoints) || score < 0 || totalPoints <= 0) {
       toast.error("Please enter valid score values");
@@ -112,13 +112,15 @@ const Grades = () => {
       return;
     }
 
-    try {
+try {
       const gradeData = {
-        ...formData,
-        score: score,
-        totalPoints: totalPoints,
-        classId: formData.classId || "1", // Default class for demo
-        date: formData.date || new Date().toISOString().split("T")[0]
+        assignment_name_c: formData.assignment_name_c,
+        score_c: score,
+        total_points_c: totalPoints,
+        type_c: formData.type_c,
+        date_c: formData.date_c || new Date().toISOString().split("T")[0],
+        student_id_c: parseInt(formData.student_id_c),
+        class_id_c: parseInt(formData.class_id_c) || 1
       };
 
       if (editingGrade) {
@@ -137,15 +139,15 @@ const Grades = () => {
     }
   };
 
-  const handleEdit = (grade) => {
+const handleEdit = (grade) => {
     setFormData({
-      studentId: grade.studentId,
-      classId: grade.classId,
-      assignmentName: grade.assignmentName,
-      score: grade.score.toString(),
-      totalPoints: grade.totalPoints.toString(),
-      type: grade.type,
-      date: grade.date
+      student_id_c: grade.student_id_c?.Id || grade.student_id_c,
+      class_id_c: grade.class_id_c?.Id || grade.class_id_c,
+      assignment_name_c: grade.assignment_name_c,
+      score_c: grade.score_c?.toString(),
+      total_points_c: grade.total_points_c?.toString(),
+      type_c: grade.type_c,
+      date_c: grade.date_c
     });
     setEditingGrade(grade);
     setShowAddForm(true);
@@ -166,14 +168,14 @@ const Grades = () => {
     }
   };
 
-  const studentOptions = students.map(student => ({
+const studentOptions = students.map(student => ({
     value: student.Id.toString(),
-    label: `${student.firstName} ${student.lastName} (Grade ${student.gradeLevel})`
+    label: `${student.first_name_c} ${student.last_name_c} (Grade ${student.grade_level_c})`
   }));
 
-  const classOptions = classes.map(classItem => ({
-    value: classItem.Id,
-    label: `${classItem.name} - ${classItem.subject}`
+const classOptions = classes.map(classItem => ({
+    value: classItem.Id?.toString(),
+    label: `${classItem.Name} - ${classItem.subject_c}`
   }));
 
   const typeOptions = [
@@ -192,8 +194,8 @@ const Grades = () => {
     return <Error message={error} onRetry={loadData} />;
   }
 
-  const averageGrade = filteredGrades.length > 0 
-    ? Math.round(filteredGrades.reduce((sum, grade) => sum + (grade.score / grade.totalPoints) * 100, 0) / filteredGrades.length)
+const averageGrade = filteredGrades.length > 0 
+    ? Math.round(filteredGrades.reduce((sum, grade) => sum + (grade.score_c / grade.total_points_c) * 100, 0) / filteredGrades.length)
     : 0;
 
   return (
@@ -254,73 +256,73 @@ const Grades = () => {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
+<FormField
                 label="Student"
                 type="select"
-                value={formData.studentId}
-                onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
+                value={formData.student_id_c}
+                onChange={(e) => setFormData({ ...formData, student_id_c: e.target.value })}
                 options={studentOptions}
                 required
               />
               
-              <FormField
+<FormField
                 label="Class"
                 type="select"
-                value={formData.classId}
-                onChange={(e) => setFormData({ ...formData, classId: e.target.value })}
+                value={formData.class_id_c}
+                onChange={(e) => setFormData({ ...formData, class_id_c: e.target.value })}
                 options={classOptions}
               />
               
-              <FormField
+<FormField
                 label="Assignment Name"
-                value={formData.assignmentName}
-                onChange={(e) => setFormData({ ...formData, assignmentName: e.target.value })}
+                value={formData.assignment_name_c}
+                onChange={(e) => setFormData({ ...formData, assignment_name_c: e.target.value })}
                 required
               />
               
-              <FormField
+<FormField
                 label="Assignment Type"
                 type="select"
-                value={formData.type}
-                onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                value={formData.type_c}
+                onChange={(e) => setFormData({ ...formData, type_c: e.target.value })}
                 options={typeOptions}
                 required
               />
               
-              <FormField
+<FormField
                 label="Score Earned"
                 type="number"
                 min="0"
                 step="0.01"
-                value={formData.score}
-                onChange={(e) => setFormData({ ...formData, score: e.target.value })}
+                value={formData.score_c}
+                onChange={(e) => setFormData({ ...formData, score_c: e.target.value })}
                 required
               />
               
-              <FormField
+<FormField
                 label="Total Points"
                 type="number"
                 min="0.01"
                 step="0.01"
-                value={formData.totalPoints}
-                onChange={(e) => setFormData({ ...formData, totalPoints: e.target.value })}
+                value={formData.total_points_c}
+                onChange={(e) => setFormData({ ...formData, total_points_c: e.target.value })}
                 required
               />
               
-              <FormField
+<FormField
                 label="Date"
                 type="date"
-                value={formData.date}
-                onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                value={formData.date_c}
+                onChange={(e) => setFormData({ ...formData, date_c: e.target.value })}
                 className="md:col-span-2"
               />
               
-              {formData.score && formData.totalPoints && (
+{formData.score_c && formData.total_points_c && (
                 <div className="md:col-span-2 p-4 bg-gradient-to-r from-info/10 to-info/20 rounded-lg border border-info/20">
                   <div className="flex items-center space-x-2">
                     <ApperIcon name="Calculator" className="h-5 w-5 text-info" />
                     <span className="text-info font-medium">
-                      Grade Preview: {Math.round((parseFloat(formData.score) / parseFloat(formData.totalPoints)) * 100)}%
+                      Grade Preview: {Math.round((parseFloat(formData.score_c) / parseFloat(formData.total_points_c)) * 100)}%
                     </span>
                   </div>
                 </div>

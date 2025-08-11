@@ -91,16 +91,16 @@ const AttendanceGrid = ({ students, attendance, onMarkAttendance, selectedDate }
                   className="hover:bg-gradient-to-r hover:from-surface hover:to-gray-50 transition-all duration-200 animate-fade-in"
                   style={{ animationDelay: `${index * 30}ms` }}
                 >
-                  <td className="px-6 py-4">
+<td className="px-6 py-4">
                     <div className="flex items-center space-x-3">
                       <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white text-sm font-semibold shadow-md">
-                        {student.firstName.charAt(0)}{student.lastName.charAt(0)}
+                        {student.first_name_c?.charAt(0)}{student.last_name_c?.charAt(0)}
                       </div>
                       <div>
                         <p className="font-medium text-gray-900">
-                          {student.firstName} {student.lastName}
+                          {student.first_name_c} {student.last_name_c}
                         </p>
-                        <p className="text-sm text-gray-600">Grade {student.gradeLevel}</p>
+                        <p className="text-sm text-gray-600">Grade {student.grade_level_c}</p>
                       </div>
                     </div>
                   </td>

@@ -21,11 +21,11 @@ const Classes = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingClass, setEditingClass] = useState(null);
-  const [formData, setFormData] = useState({
-    name: "",
-    subject: "",
-    period: "",
-    room: "",
+const [formData, setFormData] = useState({
+    Name: "",
+    subject_c: "",
+    period_c: "",
+    room_c: "",
     studentIds: []
   });
 
@@ -57,39 +57,40 @@ const Classes = () => {
     if (!searchQuery) {
       setFilteredClasses(classes);
     } else {
-      const filtered = classes.filter(classItem =>
-        classItem.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        classItem.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        classItem.room.toLowerCase().includes(searchQuery.toLowerCase())
+const filtered = classes.filter(classItem =>
+        classItem.Name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        classItem.subject_c?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        classItem.room_c?.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredClasses(filtered);
     }
   }, [searchQuery, classes]);
 
-  const resetForm = () => {
+const resetForm = () => {
     setFormData({
-      name: "",
-      subject: "",
-      period: "",
-      room: "",
+      Name: "",
+      subject_c: "",
+      period_c: "",
+      room_c: "",
       studentIds: []
     });
-    setEditingClass(null);
     setShowAddForm(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.subject || !formData.period || !formData.room) {
+if (!formData.Name || !formData.subject_c || !formData.period_c || !formData.room_c) {
       toast.error("Please fill in all required fields");
       return;
     }
 
-    try {
+try {
       const classData = {
-        ...formData,
-        studentIds: formData.studentIds || []
+        Name: formData.Name,
+        subject_c: formData.subject_c,
+        period_c: formData.period_c,
+        room_c: formData.room_c
       };
 
       if (editingClass) {
@@ -108,12 +109,12 @@ const Classes = () => {
     }
   };
 
-  const handleEdit = (classItem) => {
+const handleEdit = (classItem) => {
     setFormData({
-      name: classItem.name,
-      subject: classItem.subject,
-      period: classItem.period,
-      room: classItem.room,
+      Name: classItem.Name,
+      subject_c: classItem.subject_c,
+      period_c: classItem.period_c,
+      room_c: classItem.room_c,
       studentIds: classItem.studentIds || []
     });
     setEditingClass(classItem);
@@ -165,7 +166,7 @@ const Classes = () => {
     return <Error message={error} onRetry={loadData} />;
   }
 
-  const totalEnrollment = classes.reduce((total, classItem) => total + (classItem.studentIds?.length || 0), 0);
+const totalEnrollment = classes.reduce((total, classItem) => total + (classItem.studentIds?.length || 0), 0);
 
   return (
     <div className="space-y-6 animate-fade-in">
@@ -225,36 +226,36 @@ const Classes = () => {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
+<FormField
                 label="Class Name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                value={formData.Name}
+                onChange={(e) => setFormData({ ...formData, Name: e.target.value })}
                 placeholder="e.g., Algebra II, Biology, World History"
                 required
               />
               
-              <FormField
+<FormField
                 label="Subject"
                 type="select"
-                value={formData.subject}
-                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                value={formData.subject_c}
+                onChange={(e) => setFormData({ ...formData, subject_c: e.target.value })}
                 options={subjectOptions}
                 required
               />
               
-              <FormField
+<FormField
                 label="Period"
                 type="select"
-                value={formData.period}
-                onChange={(e) => setFormData({ ...formData, period: e.target.value })}
+                value={formData.period_c}
+                onChange={(e) => setFormData({ ...formData, period_c: e.target.value })}
                 options={periodOptions}
                 required
               />
               
-              <FormField
+<FormField
                 label="Room Number"
-                value={formData.room}
-                onChange={(e) => setFormData({ ...formData, room: e.target.value })}
+                value={formData.room_c}
+                onChange={(e) => setFormData({ ...formData, room_c: e.target.value })}
                 placeholder="e.g., 101, A205, Lab-3"
                 required
               />

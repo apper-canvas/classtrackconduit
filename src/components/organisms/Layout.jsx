@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "@/components/organisms/Sidebar";
 import Header from "@/components/organisms/Header";
-
+import { AuthContext } from "@/App";
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+  const authContext = useContext(AuthContext);
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Mobile sidebar overlay */}
@@ -31,8 +31,8 @@ const Layout = () => {
         </div>
 
         {/* Main content */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <Header onMenuClick={() => setSidebarOpen(true)} />
+<div className="flex-1 flex flex-col overflow-hidden">
+          <Header onMenuClick={() => setSidebarOpen(true)} onLogout={authContext?.logout} />
           
           <main className="flex-1 overflow-y-auto bg-gray-50">
             <div className="p-4 lg:p-6">

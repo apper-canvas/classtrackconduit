@@ -61,54 +61,54 @@ const StudentTable = ({ students, onEdit, onDelete }) => {
                 className="hover:bg-gradient-to-r hover:from-surface hover:to-gray-50 transition-all duration-200 animate-fade-in"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
-                <td className="px-6 py-4">
+<td className="px-6 py-4">
                   <div className="flex items-center space-x-3">
                     <div 
                       className="w-10 h-10 rounded-full bg-gradient-to-r flex items-center justify-center text-white font-semibold shadow-md"
-                      style={{ backgroundImage: `linear-gradient(135deg, ${getGradeLevelColor(student.gradeLevel)})` }}
+                      style={{ backgroundImage: `linear-gradient(135deg, ${getGradeLevelColor(student.grade_level_c)})` }}
                     >
-                      {student.firstName.charAt(0)}{student.lastName.charAt(0)}
+                      {student.first_name_c?.charAt(0)}{student.last_name_c?.charAt(0)}
                     </div>
                     <div>
                       <p className="font-medium text-gray-900">
-                        {student.firstName} {student.lastName}
+                        {student.first_name_c} {student.last_name_c}
                       </p>
                       <p className="text-sm text-gray-600">ID: {student.Id}</p>
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+<td className="px-6 py-4">
                   <div className="flex items-center space-x-2">
-                    <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${getGradeLevelColor(student.gradeLevel)} flex items-center justify-center shadow-md`}>
-                      <span className="text-white text-sm font-bold">{student.gradeLevel}</span>
+                    <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${getGradeLevelColor(student.grade_level_c)} flex items-center justify-center shadow-md`}>
+                      <span className="text-white text-sm font-bold">{student.grade_level_c}</span>
                     </div>
-                    <span className="text-sm text-gray-600">Grade {student.gradeLevel}</span>
+                    <span className="text-sm text-gray-600">Grade {student.grade_level_c}</span>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+<td className="px-6 py-4">
                   <div className="space-y-1">
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <ApperIcon name="Mail" className="h-4 w-4" />
-                      <span>{student.email}</span>
+                      <span>{student.email_c}</span>
                     </div>
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <ApperIcon name="Phone" className="h-4 w-4" />
-                      <span>{student.phone}</span>
+                      <span>{student.phone_c}</span>
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+<td className="px-6 py-4">
                   <div className="text-sm">
                     <p className="text-gray-900 font-medium">
-                      {format(new Date(student.enrollmentDate), "MMM dd, yyyy")}
+                      {format(new Date(student.enrollment_date_c), "MMM dd, yyyy")}
                     </p>
                     <p className="text-gray-600">
-                      {Math.floor((new Date() - new Date(student.enrollmentDate)) / (1000 * 60 * 60 * 24))} days ago
+                      {Math.floor((new Date() - new Date(student.enrollment_date_c)) / (1000 * 60 * 60 * 24))} days ago
                     </p>
                   </div>
                 </td>
-                <td className="px-6 py-4">
-                  {getStatusBadge(student.status)}
+<td className="px-6 py-4">
+                  {getStatusBadge(student.status_c)}
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex items-center justify-end space-x-2">
